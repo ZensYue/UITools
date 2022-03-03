@@ -9,7 +9,7 @@ namespace Framework.Editor
     {
         public void OnPreprocessAudio()
         {
-            if (!AssetFormatDefine.isAudioClipImportSetting) return;
+            if (!AssetFormatDefine.NeedAudioClipImportSetting) return;
 
             AssetFormatDefine.isAudioClipImporting = true;
             AssetFormatSettingData.SetAudioClipFileFormat(EditorTools.AbsolutePathToAssetPath(assetPath));

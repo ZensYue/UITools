@@ -9,11 +9,11 @@ namespace Framework.Editor
     {
         public void OnPostprocessTexture(Texture2D texture)
         {
-            if (!AssetFormatDefine.isTextureImportSetting) return;
+            if (!AssetFormatDefine.NeedTextureImportSetting) return;
 
-            AssetFormatDefine.isTextureImportSetting = true;
+            AssetFormatDefine.isTextureImporting = true;
             AssetFormatSettingData.SetTextureFileFormat(EditorTools.AbsolutePathToAssetPath(assetPath));
-            AssetFormatDefine.isTextureImportSetting = false;
+            AssetFormatDefine.isTextureImporting = false;
         }
     }
 

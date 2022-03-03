@@ -349,7 +349,7 @@ namespace Framework.Editor
 					isDirty = true;
 				}
 			}
-			if (isDirty && !AssetFormatDefine.isTextureImportSetting)
+			if (isDirty && !AssetFormatDefine.isTextureImporting)
 			{
 				importer.SaveAndReimport();
 			}

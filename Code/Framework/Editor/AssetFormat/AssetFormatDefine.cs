@@ -61,13 +61,13 @@ namespace Framework.Editor
 		/// <summary>
 		///  是否导入纹理自动设置格式
 		/// </summary>
-		public static bool isTextureImportSetting = true;
+		public static bool NeedTextureImportSetting = true;
 		public static bool isTextureImporting = false;
 
 		/// <summary>
 		///  是否导入音效自动设置格式
 		/// </summary>
-		public static bool isAudioClipImportSetting = true;
+		public static bool NeedAudioClipImportSetting = true;
 		public static bool isAudioClipImporting = false;
         #endregion
     }
