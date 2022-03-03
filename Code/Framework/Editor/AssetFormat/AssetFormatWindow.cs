@@ -11,7 +11,7 @@ namespace Framework.Editor
 		[MenuItem("Tools/AssetFormat", false, 101)]
 		static void ShowWindow()
 		{
-			var size = new Vector2(1100, 800);
+			var size = new Vector2(1250, 800);
 
 			thisInstance.ShowWindow("资源格式", size);
 			thisInstance.maxSize = size;
@@ -160,18 +160,39 @@ namespace Framework.Editor
                     EditorGUILayout.LabelField("ImporterType", GUILayout.Width(GuiPopEnumSize), GUILayout.Height(GuiHeight));
                     EditorGUILayout.LabelField("ImportModel", GUILayout.Width(GuiPopEnumSize), GUILayout.Height(GuiHeight));
                     EditorGUILayout.LabelField("MaxSize", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
-                    break;
+                    EditorGUILayout.LabelField("NoPowerOf2", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+                    EditorGUILayout.LabelField("WrapMode", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+                    EditorGUILayout.LabelField("FiterMode", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("Delete", GUILayout.Width(GuiBtnSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("Set", GUILayout.Width(GuiBtnSize), GUILayout.Height(GuiHeight));
+
+					GUILayout.Space(GuiBtnSize * 0.5f);
+					EditorGUILayout.EndHorizontal();
+
+					EditorGUILayout.BeginHorizontal();
+					GUILayout.Space(spaceSize);
+					EditorGUILayout.LabelField("", GUILayout.MinWidth(GuiDirecotryMinSize), GUILayout.MaxWidth(GuiDirecotryMaxSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("streamingMipmaps", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("mipmapEnabled", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("borderMipmap", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("mipmapFilter", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("mipMapsPreserveCoverage", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("fadeout", GUILayout.Width(GuiPopIntSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("anisoLevel", GUILayout.Width(GuiSliderSize), GUILayout.Height(GuiHeight));
+					
+					break;
 				case AssetFormatType.AudioClip:
 					EditorGUILayout.LabelField("loadInBackground", GUILayout.Width(GuiPopEnumSize), GUILayout.Height(GuiHeight));
 					EditorGUILayout.LabelField("forceToMono", GUILayout.Width(GuiPopEnumSize), GUILayout.Height(GuiHeight));
 					EditorGUILayout.LabelField("preload", GUILayout.Width(GuiPopEnumSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("Delete", GUILayout.Width(GuiBtnSize), GUILayout.Height(GuiHeight));
+					EditorGUILayout.LabelField("Set", GUILayout.Width(GuiBtnSize), GUILayout.Height(GuiHeight));
 					break;
 				default:
 					break;
 			}
 
-			EditorGUILayout.LabelField("Delete", GUILayout.Width(GuiBtnSize), GUILayout.Height(GuiHeight));
-			EditorGUILayout.LabelField("Set", GUILayout.Width(GuiBtnSize), GUILayout.Height(GuiHeight));
+			
 
 			GUILayout.Space(GuiBtnSize * 0.5f);
 			EditorGUILayout.EndHorizontal();
@@ -286,6 +307,10 @@ namespace Framework.Editor
 					}
 					GUI.color = Color.white;
 
+					item.npotScale = (TextureImporterNPOTScale)EditorGUILayout.EnumPopup(item.npotScale, GUILayout.Width(GuiPopEnumSize));
+					item.wrapMode = (TextureWrapMode)EditorGUILayout.EnumPopup(item.wrapMode, GUILayout.Width(GuiPopEnumSize));
+					item.filterMode = (FilterMode)EditorGUILayout.EnumPopup(item.filterMode, GUILayout.Width(GuiPopEnumSize));
+
 					GUI.color = deleteColor;
 					if (GUILayout.Button("-", GUILayout.Width(GuiBtnSize), GUILayout.Height(14f)))
                     {
@@ -305,6 +330,24 @@ namespace Framework.Editor
 					}
 					GUI.color = Color.white;
 					GUILayout.Space(GuiBtnSize * 0.5f);
+				}
+				EditorGUILayout.EndHorizontal();
+
+
+				EditorGUILayout.BeginHorizontal();
+                {
+					GUILayout.Space(spaceSize);
+					// Directory
+					EditorGUILayout.LabelField("", tipLabelStyle, GUILayout.MinWidth(GuiDirecotryMinSize), GUILayout.MaxWidth(GuiDirecotryMaxSize));
+					item.streamingMipmaps = EditorGUILayout.Toggle(item.streamingMipmaps, GUILayout.Width(GuiPopEnumSize));
+					item.mipmapEnabled = EditorGUILayout.Toggle(item.mipmapEnabled, GUILayout.Width(GuiPopEnumSize));
+					EditorGUI.BeginDisabledGroup(!item.mipmapEnabled);
+					item.borderMipmap = EditorGUILayout.Toggle(item.borderMipmap, GUILayout.Width(GuiPopEnumSize));
+					item.mipmapFilter = (TextureImporterMipFilter)EditorGUILayout.EnumPopup(item.mipmapFilter, GUILayout.Width(GuiPopEnumSize));
+					item.mipMapsPreserveCoverage = EditorGUILayout.Toggle(item.mipMapsPreserveCoverage, GUILayout.Width(GuiPopEnumSize));
+					item.fadeout = EditorGUILayout.Toggle(item.fadeout, GUILayout.Width(GuiPopEnumSize));
+					item.anisoLevel = EditorGUILayout.IntSlider(item.anisoLevel, -1, 9, GUILayout.Width(GuiSliderSize));
+					EditorGUI.EndDisabledGroup();
 				}
 				EditorGUILayout.EndHorizontal();
 

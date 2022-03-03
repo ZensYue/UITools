@@ -251,6 +251,78 @@ namespace Framework.Editor
 				isDirty = true;
 			}
 
+			if (importer.npotScale != assetFormatTextureSetting.npotScale)
+			{
+				importer.npotScale = assetFormatTextureSetting.npotScale;
+				isDirty = true;
+			}
+
+			if (importer.wrapMode != assetFormatTextureSetting.wrapMode)
+			{
+				importer.wrapMode = assetFormatTextureSetting.wrapMode;
+				isDirty = true;
+			}
+
+			
+			if (importer.filterMode != assetFormatTextureSetting.filterMode)
+			{
+				importer.filterMode = assetFormatTextureSetting.filterMode;
+				isDirty = true;
+			}
+
+            if (importer.isReadable)
+            {
+				importer.isReadable = false;
+				isDirty = true;
+			}
+
+			if (importer.streamingMipmaps != assetFormatTextureSetting.streamingMipmaps)
+			{
+				importer.streamingMipmaps = assetFormatTextureSetting.streamingMipmaps;
+				isDirty = true;
+			}
+
+			if (importer.mipmapEnabled != assetFormatTextureSetting.mipmapEnabled)
+			{
+				importer.mipmapEnabled = assetFormatTextureSetting.mipmapEnabled;
+				isDirty = true;
+			}
+
+			if(assetFormatTextureSetting.mipmapEnabled)
+            {
+				if (importer.borderMipmap != assetFormatTextureSetting.borderMipmap)
+				{
+					importer.borderMipmap = assetFormatTextureSetting.borderMipmap;
+					isDirty = true;
+				}
+
+				if (importer.mipmapFilter != assetFormatTextureSetting.mipmapFilter)
+				{
+					importer.mipmapFilter = assetFormatTextureSetting.mipmapFilter;
+					isDirty = true;
+				}
+
+
+				if (importer.mipMapsPreserveCoverage != assetFormatTextureSetting.mipMapsPreserveCoverage)
+				{
+					importer.mipMapsPreserveCoverage = assetFormatTextureSetting.mipMapsPreserveCoverage;
+					isDirty = true;
+				}
+
+				if (importer.fadeout != assetFormatTextureSetting.fadeout)
+				{
+					importer.fadeout = assetFormatTextureSetting.fadeout;
+					isDirty = true;
+				}
+
+				if (importer.anisoLevel != assetFormatTextureSetting.anisoLevel)
+				{
+					importer.anisoLevel = assetFormatTextureSetting.anisoLevel;
+					isDirty = true;
+				}
+			}
+
+
 			foreach (var item in assetFormatTextureSetting.assetFormatTextureInfos)
 			{
 				var textureSetting = new TextureImporterPlatformSettings
